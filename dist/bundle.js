@@ -63,10 +63,6 @@
 	  return console.log("DOM ready");
 	});
 
-	_rxDom2.default.Observable.of(1, 2, 3).subscribe(function (v) {
-	  return console.log(v);
-	});
-
 	(0, _jquery2.default)("#head").html("It works!");
 
 /***/ },
