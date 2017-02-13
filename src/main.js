@@ -1,10 +1,9 @@
 import $ from 'jquery';
 import Rx from 'rx-dom';
 
-console.log("App started");
+const righSideClick$ = Rx.Observable
+    .fromEvent(document, 'click')
+    .filter(c => c.clientX > window.innerWidth/2)
+    .take(10);
 
-Rx.DOM.ready()
-  .subscribe(v => console.log("DOM ready"));
-
-$("#head").html("It works!");
-
+righSideClick$.subscribe(c => {console.log(c.clientX + ", " + c.clientY)});
