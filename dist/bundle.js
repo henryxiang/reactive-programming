@@ -56,19 +56,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var click$ = _Rx2.default.Observable.fromEvent((0, _jquery2.default)('#btn1'), 'click');
+	var mouseMove$ = _Rx2.default.Observable.fromEvent(document, 'mousemove');
 	// import Rx from 'rx-dom';
 
 
-	var multiClick$ = click$.bufferWhen(function () {
-	  return click$.debounceTime(250);
-	}).map(function (clicks) {
-	  return clicks.length;
-	});
-
-	multiClick$.subscribe(function (c) {
-	  var clicks = c == 1 ? c + ' click' : c + ' clicks';
-	  (0, _jquery2.default)('#result').html(clicks);
+	mouseMove$.subscribe(function (e) {
+	  var coordinate = 'X: ' + e.clientX + ', Y: ' + e.clientY;
+	  (0, _jquery2.default)('#result').html(coordinate);
 	});
 
 /***/ },
