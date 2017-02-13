@@ -9,4 +9,4 @@ npm start
 ```
 After a few seconds, you should be able to see your browser starting up and showing "It works!".
 
-Now go to the second terminal, and run `git tag` to see all available examples. You can experiment with each example by running `git checkout <example-tag-name>`. Your browser should be automatically refreshed after that and everytime you make changes to the files in src/ directory.
+Now go to the second terminal, and run `git tag` to see all available examples. You can experiment with each example by running `git checkout <example-tag-name>`. Your browser should be automatically refreshed after that and everytime you save changes to the files in src/ directory.
