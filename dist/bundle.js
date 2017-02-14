@@ -56,31 +56,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var source$ = new _Rx2.default.Observable(function (observer) {
-	  console.log("Created an observable");
-
-	  // send some data
-	  observer.next("hello world");
-	  observer.next([1, 2, 3, 4, 5]);
-	  observer.next({ id: 12, name: "Bruce Wayne" });
-
-	  // throw an error
-	  observer.error(new Error("Error: panic!"));
-
-	  // completed
-	  observer.complete();
+	var httpResponse$ = _Rx2.default.Observable.ajax('https://api.github.com/users/ReactiveX').map(function (e) {
+	  return e.response;
 	});
 	// import Rx from 'rx-dom';
 
 
-	source$.catch(function (err) {
-	  return _Rx2.default.Observable.of(err);
-	}).subscribe(function (value) {
-	  console.log(value);
-	}, function (error) {
-	  console.log(error);
-	}, function () {
-	  console.log("completed");
+	httpResponse$.subscribe(function (response) {
+	  var outputJson = JSON.stringify(response, null, 2);
+	  (0, _jquery2.default)('#result').html('<pre>' + outputJson + '</pre>');
 	});
 
 /***/ },
