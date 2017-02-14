@@ -56,15 +56,32 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var httpResponse$ = _Rx2.default.Observable.ajax('https://api.github.com/users/ReactiveX').map(function (e) {
-	  return e.response;
-	});
+	var search$ = _Rx2.default.Observable.fromEvent((0, _jquery2.default)('#search'), 'keyup').pluck('target', 'value');
 	// import Rx from 'rx-dom';
 
 
-	httpResponse$.subscribe(function (response) {
+	var getUserInfo = function getUserInfo(userId) {
+	  var request$ = _Rx2.default.Observable.ajax('https://api.github.com/users/' + userId);
+	  return request$.map(function (e) {
+	    return e.response;
+	  });
+	};
+
+	var searchUser$ = search$.filter(function (text) {
+	  return text.length > 0;
+	}) // only get the non-empty text
+	.switchMap(function (userId) {
+	  return getUserInfo(userId);
+	});
+
+	searchUser$.subscribe(function (response) {
+	  // console.log(response);
 	  var outputJson = JSON.stringify(response, null, 2);
 	  (0, _jquery2.default)('#result').html('<pre>' + outputJson + '</pre>');
+	});
+
+	search$.subscribe(function (text) {
+	  if (text.length == 0) (0, _jquery2.default)('#result').html('');
 	});
 
 /***/ },
