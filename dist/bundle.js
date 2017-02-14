@@ -56,12 +56,28 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var inputText$ = _Rx2.default.Observable.fromEvent((0, _jquery2.default)('#txt'), 'keyup').pluck('target', 'value');
+	var data = [1, 2, 'a', 3, 'b', 4, 'c', 6, 7, 8];
 	// import Rx from 'rx-dom';
 
 
-	inputText$.subscribe(function (text) {
-	  (0, _jquery2.default)('#result').html(text);
+	var data$ = _Rx2.default.Observable.from(data);
+
+	var filteredData$ = data$.filter(function (d) {
+	  return !isNaN(d);
+	}).filter(function (d) {
+	  return d % 2 === 0;
+	});
+
+	filteredData$.subscribe(function (d) {
+	  console.log(d);
+	}, function (err) {}, function () {
+	  console.log("completed");
+	});
+
+	filteredData$.reduce(function (s, d) {
+	  return s + d;
+	}).subscribe(function (sum) {
+	  (0, _jquery2.default)('#result').html('<b>Sum = ' + sum + '</b>');
 	});
 
 /***/ },
