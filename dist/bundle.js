@@ -56,13 +56,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var mouseMove$ = _Rx2.default.Observable.fromEvent(document, 'mousemove');
+	var inputText$ = _Rx2.default.Observable.fromEvent((0, _jquery2.default)('#txt'), 'keyup').pluck('target', 'value');
 	// import Rx from 'rx-dom';
 
 
-	mouseMove$.subscribe(function (e) {
-	  var coordinate = 'X: ' + e.clientX + ', Y: ' + e.clientY;
-	  (0, _jquery2.default)('#result').html(coordinate);
+	inputText$.subscribe(function (text) {
+	  (0, _jquery2.default)('#result').html(text);
 	});
 
 /***/ },

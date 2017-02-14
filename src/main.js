@@ -2,10 +2,10 @@ import $ from 'jquery';
 // import Rx from 'rx-dom';
 import Rx from 'rxjs/Rx';
 
-const mouseMove$ = Rx.Observable.fromEvent(document, 'mousemove');
+const inputText$ = Rx.Observable
+  .fromEvent($('#txt'), 'keyup')
+  .pluck('target', 'value');
 
-mouseMove$.subscribe(e => {
-  const coordinate = `X: ${e.clientX}, Y: ${e.clientY}`
-  $('#result').html(coordinate);
+inputText$.subscribe(text => {
+  $('#result').html(text);
 });
-
