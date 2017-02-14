@@ -2,21 +2,33 @@ import $ from 'jquery';
 // import Rx from 'rx-dom';
 import Rx from 'rxjs/Rx';
 
-const data = [1,2,'a',3,'b',4,'c',6,7,8];
+const source$ = new Rx.Observable(observer => {
+  console.log("Created an observable");
 
-const data$ = Rx.Observable.from(data);
+  // send some data
+  observer.next("hello world");
+  observer.next([1,2,3,4,5]);
+  observer.next({id: 12, name: "Bruce Wayne"});
 
-const filteredData$ = 
-    data$.filter(d => !isNaN(d))
-        .filter(d => d%2 === 0);
+  // throw an error
+  observer.error(new Error("Error: panic!"));
 
-filteredData$.subscribe(
-  d => {console.log(d)},
-  err => {},
-  () => {console.log("completed")}
-);
+  // completed
+  observer.complete();
 
-filteredData$.reduce((s, d) => s+d)
-    .subscribe(sum => {
-      $('#result').html(`<b>Sum = ${sum}</b>`);
-    });
+});
+
+
+source$
+  .catch(err => Rx.Observable.of(err))
+  .subscribe(
+    value => {
+      console.log(value);
+    },
+    error => {
+      console.log(error);
+    },
+    () => {
+      console.log("completed");
+    }
+  );

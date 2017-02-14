@@ -56,28 +56,31 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var data = [1, 2, 'a', 3, 'b', 4, 'c', 6, 7, 8];
+	var source$ = new _Rx2.default.Observable(function (observer) {
+	  console.log("Created an observable");
+
+	  // send some data
+	  observer.next("hello world");
+	  observer.next([1, 2, 3, 4, 5]);
+	  observer.next({ id: 12, name: "Bruce Wayne" });
+
+	  // throw an error
+	  observer.error(new Error("Error: panic!"));
+
+	  // completed
+	  observer.complete();
+	});
 	// import Rx from 'rx-dom';
 
 
-	var data$ = _Rx2.default.Observable.from(data);
-
-	var filteredData$ = data$.filter(function (d) {
-	  return !isNaN(d);
-	}).filter(function (d) {
-	  return d % 2 === 0;
-	});
-
-	filteredData$.subscribe(function (d) {
-	  console.log(d);
-	}, function (err) {}, function () {
+	source$.catch(function (err) {
+	  return _Rx2.default.Observable.of(err);
+	}).subscribe(function (value) {
+	  console.log(value);
+	}, function (error) {
+	  console.log(error);
+	}, function () {
 	  console.log("completed");
-	});
-
-	filteredData$.reduce(function (s, d) {
-	  return s + d;
-	}).subscribe(function (sum) {
-	  (0, _jquery2.default)('#result').html('<b>Sum = ' + sum + '</b>');
 	});
 
 /***/ },
