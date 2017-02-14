@@ -2,29 +2,18 @@ import $ from 'jquery';
 // import Rx from 'rx-dom';
 import Rx from 'rxjs/Rx';
 
-const search$ = Rx.Observable
-  .fromEvent($('#search'), 'keyup')
-  .pluck('target', 'value');
+const source1$ = Rx.Observable
+  .interval(1000)
+  .map(t => `Source 1: ${t+1}`);
 
-const getUserInfo = (userId) => {
-  const request$ = Rx.Observable.ajax('https://api.github.com/users/' + userId);
-  return request$.map(e => e.response);     
-}
+const source2$ = Rx.Observable
+  .interval(3000)
+  .map(t => `Source 2: ${t+1}`);
 
-const searchUser$ =
-  search$
-    .filter(text => text.length > 0) // only get the non-empty text
-    .switchMap(userId => getUserInfo(userId))
+const mergedSource$ = Rx.Observable.merge(source1$, source2$);
 
-searchUser$
-  .subscribe(response => {
-    // console.log(response);
-    const outputJson = JSON.stringify(response, null, 2);
-    $('#result').html(`<pre>${outputJson}</pre>`);
-  });
-
-search$
-  .subscribe(text => {
-    if (text.length == 0)
-      $('#result').html('');
+mergedSource$
+  .take(40)
+  .subscribe(value => {
+    $('#result').append(`<div>${value}</div>`);
   })
