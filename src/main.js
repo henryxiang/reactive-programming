@@ -4,10 +4,12 @@ import Rx from 'rxjs/Rx';
 import L from 'leaflet';
 
 const mapStyle = {
-  width: window.innerWidth,
-  height: window.innerHeight
+  width: "90%",
+  height: window.innerHeight - 100,
+  margin: "0 auto"
 };
 $('#mapView').css(mapStyle);
+$('#head').css({width: mapStyle.width, margin: mapStyle.margin});
 
 const location = [38.544907, -121.740517];  // Davis, California
 const zoom = 8;

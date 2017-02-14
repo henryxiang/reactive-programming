@@ -62,10 +62,12 @@
 
 	// import Rx from 'rx-dom';
 	var mapStyle = {
-	  width: window.innerWidth,
-	  height: window.innerHeight
+	  width: "90%",
+	  height: window.innerHeight - 100,
+	  margin: "0 auto"
 	};
 	(0, _jquery2.default)('#mapView').css(mapStyle);
+	(0, _jquery2.default)('#head').css({ width: mapStyle.width, margin: mapStyle.margin });
 
 	var location = [38.544907, -121.740517]; // Davis, California
 	var zoom = 8;
