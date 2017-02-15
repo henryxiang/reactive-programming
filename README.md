@@ -4,6 +4,7 @@ This is a demonstration of some basic concepts of reactive programming using RxJ
 
 To get started, open two terminal windows/tabs. In the first terminal, run the following commands:
 ```
+git clone https://github.com/henryxiang/reactive-programming.git
 git pull --tags
 git checkout 00-setup-env
 npm start
