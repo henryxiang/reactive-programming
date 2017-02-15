@@ -248,7 +248,7 @@ Rx.Observable
 
 ## Thinking reactively
 
-> Your mouse is a database
+> "Your mouse is a database"
 
 ```JavaScript
 Rx.Observable
@@ -399,3 +399,7 @@ const source$ = Rx.Observable.fromPromise(promise);
 <img src="flatmap.png" style="background-color:white;" />
 
 ---
+
+> <small>To a curious observer, everything is observable.</small>
+
+<img src="curious-observer.png" />
