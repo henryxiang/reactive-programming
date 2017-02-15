@@ -50,6 +50,7 @@ database request complete ──> send response
 database request complete ──> send response
 database request complete ──> send response
 ```
+Note: Think about Disneyland Fast Track System as an example.
 
 ---
 
@@ -59,6 +60,8 @@ database request complete ──> send response
 * Memory leaks            
 * Complex state management
 * Uncaught async errors   
+
+Note: Think about missle launcher as an example.
 
 ---
 
