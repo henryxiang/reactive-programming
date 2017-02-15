@@ -1,5 +1,5 @@
 ---
-title: RP Presentation
+title: Rx Intro
 ---
 
 # Reactive Programming Introduction
