@@ -406,6 +406,11 @@ const source$ = Rx.Observable.fromPromise(promise);
 
 ---
 
+## Marble Diagram
+<img src="marble-diagram.png" style="background-color:white;" />
+
+---
+
 ## Map
 <img src="map.png" style="background-color:white;" />
 
