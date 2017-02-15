@@ -217,6 +217,8 @@ while(nameIterator.hasNext()) {
 }
 ```
 
+Note: Two things can happen to an iterator: next item or done. Functional collection operators can be used on an iterator.
+
 ---
 
 ## The Observer Pattern
@@ -235,6 +237,8 @@ button1.onclick(function(event) {
 
 });
 ```
+
+Note: Two patters are related and symmetrical: push vs. pull.
 
 ---
 
@@ -282,7 +286,7 @@ Rx.Observable
 ​  .subscribe(​c => console.log(c.clientX, c.clientY))
 ```
 
-Note: comparing traditional way vs Rx way
+Note: What's the difference between the events and an array? They're all collections.
 
 ---
 
