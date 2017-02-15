@@ -96,7 +96,7 @@ Note: Changing the way of thinking helps to tackle the hard issues related to as
 * Immutability
 * Higher level of abstraction
 
-Note: Functional programming are more expressive and enable programmers to write less code.
+Note: Functional programming are more expressive and enable programmers to write less code. Pure functions works as read-only hash tables.
 
 ---
 
