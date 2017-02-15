@@ -1,4 +1,19 @@
+---
+title: RP Presentation
+---
+
 # Reactive Programming Introduction
+
+---
+
+## A story
+
+> Life of a programmer
+
+* I'm debugging ...              <!-- .element: class="fragment" -->
+* Because I wrote some code ...  <!-- .element: class="fragment" -->
+* How do I fix my bugs?          <!-- .element: class="fragment" -->
+* By writing more code!!         <!-- .element: class="fragment" -->
 
 ---
 
@@ -6,7 +21,34 @@
 
 * Asynchronous event-driven     <!-- .element: class="fragment" -->
 * Non-blocking I/O              <!-- .element: class="fragment" -->
-* Better concurrency handling   <!-- .element: class="fragment" -->
+* Just-in-time processing       <!-- .element: class="fragment" -->
+* High-throughput concurrency   <!-- .element: class="fragment" -->
+
+---
+
+## Sync or Async
+
+```
+user do an action
+       │
+       v
+ application start processing action
+   └──> make database request
+          └──> do nothing until request completes
+ request complete
+   └──> send result to user
+
+```
+----
+
+```
+request ──> make database request
+request ──> make database request
+request ──> make database request
+database request complete ──> send response
+database request complete ──> send response
+database request complete ──> send response
+```
 
 ---
 
@@ -15,6 +57,20 @@
 * Callback hell                       <!-- .element: class="fragment" -->
 * Events force side-effects           <!-- .element: class="fragment" -->
 * Events are not first-class values   <!-- .element: class="fragment" -->
+* Hard to synchronize events          <!-- .element: class="fragment" -->
+
+---
+
+## ReactiveX
+
+![](rx-logo.png)
+
+> "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming."
+
+---
+
+## What's so good about Rx
+![](rx-benefits.png)
 
 ---
 
@@ -100,9 +156,65 @@ Note: pure functions are composable
 
 ---
 
-## A problem to solve
+## Two design patterns
 
-Log only the first 10 clicks on the right half of the browser window.
+* Iterator Pattern
+* Observer Pattern
+
+---
+
+## The Iterator Pattern
+<img src="iterator-pattern.png" style="background-color: white" />
+
+---
+
+## Iterator in action
+
+```Java
+// create an Iterator from List
+Iterator<String> nameIterator = nameList.iterator();
+
+while(nameIterator.hasNext()) {
+  System.out.println(nameIterator.next());
+}
+```
+
+---
+
+## The Observer Pattern
+<img src="observer-pattern.jpg" />
+
+---
+
+## Observer in action
+
+```JavaScript
+button1.onclick(function(event) {
+
+  console.log(event.target);
+
+  // actions taken on event
+
+});
+```
+
+---
+
+## Observable
+
+> The only Rx data structure you need
+
+* Observable emits values in order (like an iterator)
+* Observable "pushes" values to subscriber (observer)
+* Observables can be copied, transformed and queried (like SQL)
+* Observables are "lazy"
+* Everything is observable
+
+---
+
+## A problem to consider
+
+Capture the first 10 clicks on the right half of the browser window.
 
 ---
 
@@ -119,7 +231,6 @@ document.addEventListener(​'click'​,
       }​   
     } ​else​ {​
       document.removeEventListener(​'click'​, registerClicks);​
-      clicks = 0;
     }​ 
 });
 ```
@@ -135,7 +246,7 @@ Rx.Observable
 
 ---
 
-## Thinking Reactively
+## Thinking reactively
 
 > Your mouse is a database
 
@@ -156,14 +267,62 @@ LIMIT​ 10
 
 ---
 
-## The reactive way
+## Create observables
 
+```
+const source$ = new Rx.Observable(observer => {
+
+  // send some data
+  observer.next("hello world");
+  observer.next([1,2,3,4,5]);
+  observer.next({id: 12, name: "Bruce Wayne"});
+
+  // throw an error
+  observer.error(new Error("Error: panic!"));
+
+  // completed
+  observer.complete();
+
+});
+```
 
 ---
 
-## Create observables
+<!-- .slide: data-transition="fade-in fade-out" -->
+## Subscribe to observables
 
+```
+const source$ = new Rx.Observable(observer) => {
+  // implemention omitted
+});
 
+source$
+  //optional error catcher
+  .catch(err => Rx.Observable.of(err))
+  .subscribe(
+    data => { console.log(data); },
+    // optional error handler
+    error => { console.log(error); },
+    // optional completion handler
+    () => { console.log("completed"); }
+  );
+```
+
+---
+
+<!-- .slide: data-transition="fade-in fade-out" -->
+## Subscribe to observables
+
+```
+const source$ = new Rx.Observable(observer) => {
+  // implemention omitted
+});
+
+source$.subscribe(data => { 
+  console.log(data);
+});
+
+```
 
 ---
 
@@ -189,3 +348,54 @@ const source$ = Rx.Observable.fromPromise(promise);
 ---
 
 ## Operations on observables
+
+* Transforming: map, buffer, switchMap
+* Combining: merge, concat, zip, join
+* Filtering: debounce, filter, skip, take, distinct
+* Creating: timer, interval, range
+* Conditional: all, skipUntil, takeUntil
+* Math: count, max, min, sum, reduce
+
+[Rx Operators Documentation](http://reactivex.io/documentation/operators.html)
+
+---
+
+## Map
+<img src="map.png" style="background-color:white;" />
+
+---
+
+## Filter
+<img src="filter.png" style="background-color:white;" />
+
+---
+
+## Merge
+<img src="merge.png" style="background-color:white;" />
+
+---
+
+## Concat
+<img src="concat.png" style="background-color:white;" />
+
+---
+
+## Debounce
+<img src="debounce.png" style="background-color:white;" />
+
+---
+
+## Buffer
+<img src="buffer.png" style="background-color:white;" />
+
+---
+
+## Zip
+<img src="zip.png" style="background-color:white;" />
+
+---
+
+## switchMap (flatMap)
+<img src="flatmap.png" style="background-color:white;" />
+
+---
