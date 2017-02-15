@@ -12,7 +12,7 @@ title: RP Presentation
 
 * I'm debugging ...              <!-- .element: class="fragment" -->
 * Because I wrote some code ...  <!-- .element: class="fragment" -->
-* How do I fix the bugs?          <!-- .element: class="fragment" -->
+* How do I fix the bugs?         <!-- .element: class="fragment" -->
 * By writing more code!!         <!-- .element: class="fragment" -->
 
 ---
