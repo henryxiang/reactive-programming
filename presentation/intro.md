@@ -9,7 +9,7 @@ title: RP Presentation
 ## Job of a programmer
 
 * I write some code.                  <!-- .element: class="fragment" -->
-* I'll find some bugs.                <!-- .element: class="fragment" -->
+* Then I'll find some bugs.           <!-- .element: class="fragment" -->
 * Something went wrong with my code.  <!-- .element: class="fragment" -->
 * I'll fix the bugs.                  <!-- .element: class="fragment" -->
 * How do I fix the bugs?              <!-- .element: class="fragment" -->
@@ -18,12 +18,12 @@ title: RP Presentation
 
 ---
 
-## What's so good about Node.js?
+### How a single Node.js server can handle 10,000 requests/sec?
 
-* Asynchronous event-driven     <!-- .element: class="fragment" -->
-* Non-blocking I/O              <!-- .element: class="fragment" -->
-* Just-in-time processing       <!-- .element: class="fragment" -->
-* High-throughput concurrency   <!-- .element: class="fragment" -->
+* Asynchronous event-driven  
+* Non-blocking I/O           
+* Just-in-time processing    
+* High-throughput concurrency
 
 ---
 
@@ -53,12 +53,12 @@ database request complete ──> send response
 
 ---
 
-## What's the catch?
+## Async programming seems hard
 
-* Callback hell                       <!-- .element: class="fragment" -->
-* Events force side-effects           <!-- .element: class="fragment" -->
-* Events are not first-class values   <!-- .element: class="fragment" -->
-* Hard to synchronize callbacks       <!-- .element: class="fragment" -->
+* Race conditions         
+* Memory leaks            
+* Complex state management
+* Uncaught async errors   
 
 ---
 
@@ -91,14 +91,35 @@ Note: functional programming are more expressive and programmer writes less code
 
 ---
 
+## ES6 fat-arrow function notation
+
+```JavaScript
+function(x, y) {
+  return x + y;
+}
+```
+----
+
+```JavaScript
+// implicit return
+(x, y) => x + y  
+
+// explicit return
+(x, y) => {
+  return x + y;
+}
+```
+
+---
+
 ## Example 1
 
 The reduce() function
 
-```Java
-int sum(List<Integer> input) {
-  int result = 0;
-  for (int i : input) {
+```JavaScript
+sum (inputList) {
+  result = 0;
+  for (let i of inputList) {
     result += i;
   }
   return result;
@@ -107,7 +128,7 @@ int sum(List<Integer> input) {
 ----
 
 ```JavaScript
-sum = input.reduce((s, i) => s+i)
+sum = inputList.reduce((s, i) => s+i)
 ```
 
 Note: reduce() is a high-order function and it is a pure function
@@ -118,10 +139,10 @@ Note: reduce() is a high-order function and it is a pure function
 
 The map() function
 
-```Java
-int sum(List<Integer> input) {
-  int result = 0;
-  for (int i : input) {
+```JavaScript
+sumSquared (inputList) {
+  result = 0;
+  for (let i of inputList) {
     result += i*i;
   }
   return result;
@@ -130,7 +151,7 @@ int sum(List<Integer> input) {
 ----
 
 ```JavaScript
-sum = input
+sum = inputList
       .map(i => i*i)
       .reduce((s, i) => s+i)
 ```
@@ -141,10 +162,10 @@ sum = input
 
 The filter() function
 
-```Java
-int sum(List<Integer> input) {
-  int result = 0;
-  for (int i : input) {
+```JavaScript
+sumEvenSquared (inputList) {
+  result = 0;
+  for (let i of inputList) {
     if (i%2 == 0)
       result += i*i;
   }
@@ -154,13 +175,13 @@ int sum(List<Integer> input) {
 ----
 
 ```JavaScript
-sum = input
+sum = inputList
       .filter(i => i%2 == 0)
       .map(i => i*i)
       .reduce((s, i) => s+i)
 ```
 
-Note: pure functions are composable
+Note: pure functions are composable; operations can be done on collections without loops;
 
 ---
 
@@ -409,6 +430,12 @@ const source$ = Rx.Observable.fromPromise(promise);
 
 ## switchMap (flatMap)
 <img src="flatmap.png" style="background-color:white;" />
+
+---
+
+## Exercise
+
+> How to do drag-and-drop in Rx way?
 
 ---
 
