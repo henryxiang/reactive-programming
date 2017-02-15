@@ -16,6 +16,8 @@ title: Rx Intro
 * By writing more code.               <!-- .element: class="fragment" -->
 * Repeat ...                          <!-- .element: class="fragment" -->
 
+Note: Solving one problem often introduces other problems. By changing the way of thinking, we can ofen find a simple solution to seemingly hard problem.
+
 ---
 
 ### How a single Node.js server can handle 10,000 requests/sec?
@@ -24,6 +26,8 @@ title: Rx Intro
 * Non-blocking I/O           
 * Just-in-time processing    
 * High-throughput concurrency
+
+Note: JavaScript is ubiquitous. Web apps running in browser, mobile app development, server apps.
 
 ---
 
@@ -71,6 +75,8 @@ Note: Think about missle launcher as an example.
 
 > "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming."
 
+Note: Changing the way of thinking helps to tackle the hard issues related to async programming.
+
 ---
 
 ## Rx benefits
@@ -90,7 +96,7 @@ Note: Think about missle launcher as an example.
 * Immutability
 * Higher level of abstraction
 
-Note: functional programming are more expressive and programmer writes less code.
+Note: Functional programming are more expressive and enable programmers to write less code.
 
 ---
 
@@ -371,7 +377,7 @@ const value$ = Rx.Observable.from([1,2,4,5,6,7,8,9]);
 // From a DOM event
 const input$ = Rx.Observable.fromEvent(textInput, 'keyup');
 
-// From a XHR
+// From an XHR
 const request$ = Rx.Observable.ajax(url);
 
 // From a Promise
