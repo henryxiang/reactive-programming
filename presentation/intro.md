@@ -6,14 +6,15 @@ title: RP Presentation
 
 ---
 
-## A story
+## Job of a programmer
 
-> Life of a programmer
-
-* I'm debugging ...              <!-- .element: class="fragment" -->
-* Because I wrote some code ...  <!-- .element: class="fragment" -->
-* How do I fix the bugs?         <!-- .element: class="fragment" -->
-* By writing more code!!         <!-- .element: class="fragment" -->
+* I write some code.                  <!-- .element: class="fragment" -->
+* I'll find some bugs.                <!-- .element: class="fragment" -->
+* Something went wrong with my code.  <!-- .element: class="fragment" -->
+* I'll fix the bugs.                  <!-- .element: class="fragment" -->
+* How do I fix the bugs?              <!-- .element: class="fragment" -->
+* By writing more code.               <!-- .element: class="fragment" -->
+* Repeat ...                          <!-- .element: class="fragment" -->
 
 ---
 
@@ -57,11 +58,11 @@ database request complete ──> send response
 * Callback hell                       <!-- .element: class="fragment" -->
 * Events force side-effects           <!-- .element: class="fragment" -->
 * Events are not first-class values   <!-- .element: class="fragment" -->
-* Hard to synchronize events          <!-- .element: class="fragment" -->
+* Hard to synchronize callbacks       <!-- .element: class="fragment" -->
 
 ---
 
-## ReactiveX
+## Reactive Extensions (Rx)
 
 ![](rx-logo.png)
 
@@ -69,8 +70,13 @@ database request complete ──> send response
 
 ---
 
-## What's so good about Rx
+## Rx benefits
 ![](rx-benefits.png)
+
+---
+
+## Polyglot Rx
+![](rx-polyglot.png)
 
 ---
 
@@ -80,6 +86,8 @@ database request complete ──> send response
 * High-order function
 * Immutability
 * Higher level of abstraction
+
+Note: functional programming are more expressive and programmer writes less code.
 
 ---
 
@@ -244,11 +252,13 @@ Rx.Observable
 ​  .subscribe(​c => console.log(c.clientX, c.clientY))
 ```
 
+Note: comparing traditional way vs Rx way
+
 ---
 
 ## Thinking reactively
 
-> "Your mouse is a database"
+> "Your mouse is a database."
 
 ```JavaScript
 Rx.Observable
@@ -312,6 +322,8 @@ source$
 
 <!-- .slide: data-transition="fade-in fade-out" -->
 ## Subscribe to observables
+
+A simplified way
 
 ```
 const source$ = new Rx.Observable(observer) => {
@@ -397,6 +409,14 @@ const source$ = Rx.Observable.fromPromise(promise);
 
 ## switchMap (flatMap)
 <img src="flatmap.png" style="background-color:white;" />
+
+---
+
+## Resources
+
+* RxJS official source code repository on GitHub
+* ReactiveX, a collection of resources related to the Reactive Extensions
+* RxMarbles, an interactive tool to visualize Observables[7]
 
 ---
 
