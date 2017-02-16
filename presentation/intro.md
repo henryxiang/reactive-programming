@@ -461,7 +461,7 @@ const source$ = Rx.Observable.fromPromise(promise);
 
 * RxJS official source code repository on GitHub
 * ReactiveX, a collection of resources related to the Reactive Extensions
-* RxMarbles, an interactive tool to visualize Observables[7]
+* RxMarbles, an interactive tool to visualize Observables
 
 ---
 
