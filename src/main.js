@@ -1,5 +1,4 @@
 import $ from 'jquery';
-// import Rx from 'rx-dom';
 import Rx from 'rxjs/Rx';
 import L from 'leaflet';
 
@@ -23,14 +22,13 @@ const mapConfig = {
 const mymap = L.map('mapView').setView(location, zoom);
 L.tileLayer(mapUrl, mapConfig).addTo(mymap);
 
-
 const quakeUrl = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
-const ajaxRequest = $.ajax({
+const ajaxRequest = {
   url: quakeUrl,
-  dataType: 'json',
+  responseType: 'json',
   crossDomain: true
-}).promise();
-const ajax$ = Rx.Observable.fromPromise(ajaxRequest);
+};
+const ajax$ = Rx.Observable.ajax(ajaxRequest);
 
 Rx.Observable.timer(0, 5000)
   .switchMap(t => ajax$)

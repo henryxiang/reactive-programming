@@ -60,7 +60,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Rx from 'rx-dom';
 	var mapStyle = {
 	  width: "90%",
 	  height: window.innerHeight - 100,
@@ -82,12 +81,12 @@
 	_leaflet2.default.tileLayer(mapUrl, mapConfig).addTo(mymap);
 
 	var quakeUrl = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
-	var ajaxRequest = _jquery2.default.ajax({
+	var ajaxRequest = {
 	  url: quakeUrl,
-	  dataType: 'json',
+	  responseType: 'json',
 	  crossDomain: true
-	}).promise();
-	var ajax$ = _Rx2.default.Observable.fromPromise(ajaxRequest);
+	};
+	var ajax$ = _Rx2.default.Observable.ajax(ajaxRequest);
 
 	_Rx2.default.Observable.timer(0, 5000).switchMap(function (t) {
 	  return ajax$;
